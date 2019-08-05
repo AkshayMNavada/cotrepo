@@ -30,6 +30,7 @@ static String DeviceID="190859";//Raspberry pi
 	static String uname2="";
 	static String CreateAlarm="";
 	static String GetAlarms="";
+	static String SetOperation="";
 	
 	/*@Test
 	public void setAlarm() {
@@ -57,6 +58,7 @@ static String DeviceID="190859";//Raspberry pi
 	        ph=prop.getProperty("ph1");
 	        CreateAlarm=prop.getProperty("createalarm");
 	        GetAlarms=prop.getProperty("getalarms");
+	        SetOperation=prop.getProperty("setoperation");
 
 	    } catch (IOException ex) {
 	        ex.printStackTrace();
@@ -99,6 +101,34 @@ static String DeviceID="190859";//Raspberry pi
 
 	}
 	
+	public void setAlarmTest4752() {
+
+		// Get Children
+		ExtractableResponse<Response> getChildrenResponse = given().log().all()
+				// .contentType(ContentType.ANY)
+				
+				// .header("Content-Type", "application/json;charset=ISO-8859-1")
+				.proxy("10.24.0.53",8080)
+				.contentType("application+json").accept("application+json").auth()
+				.basic(uname, pass)
+				//.body("{\"name\": \"testMeasurementDevice\",\"c8y_IsDevice\":{},\"c8y_SupportedMeasurements\":[\"c8y_TemperatureMeasurement\"]}").when()
+				.body("{\r\n" + 
+						"\"source\":{\r\n" + 
+						"\"id\":\"190859\"},\r\n" + 
+						"\"type\":\"TestAlarm\",\r\n" + 
+						"\"text\":\"I am an alarm\",\r\n" + 
+						"\"severity\":\"MINOR\",\r\n" + 
+						"\"status\":\"ACTIVE\",\r\n" + 
+						"\"time\":\"2019-02-11T12:03:27.845Z\"\r\n" + 
+						"}").when()
+				//.body(Payload()).when()
+				.post(CreateAlarm).then().log().all()
+				.statusCode(201).extract();
+
+		System.out.println("!!!!!!!!!!!!!!" + getChildrenResponse.asString() + "!!!!!!!!!!!!!!!!");
+
+	}
+	
 	
 	public void getAlarms() {
 		// Get Children
@@ -112,6 +142,35 @@ static String DeviceID="190859";//Raspberry pi
 
 	}
 	
+	public void setOperation() {
+
+		// Get Children
+		ExtractableResponse<Response> getChildrenResponse = given().log().all()
+				// .contentType(ContentType.ANY)
+				
+				// .header("Content-Type", "application/json;charset=ISO-8859-1")
+				.proxy("10.24.0.53",8080)
+				.contentType("application+json").accept("application+json").auth()
+				.basic(uname, pass)
+				//.body("{\"name\": \"testMeasurementDevice\",\"c8y_IsDevice\":{},\"c8y_SupportedMeasurements\":[\"c8y_TemperatureMeasurement\"]}").when()
+				.body("{\r\n" + 
+						"\"deviceId\":\"10200\",\r\n" + 
+						"\"com_cumulocity_model_WebCamDevice\":{\r\n" + 
+						"\"name\":\"take picture\",\r\n" + 
+						"\"parameters\": {\r\n" + 
+						"\"duration\":\"5s\",\r\n" + 
+						"\"quality\":\"HD\"\r\n" + 
+						"}\r\n" + 
+						"},\r\n" + 
+						"\"description\":\"WebCam picture\"\r\n" + 
+						"}").when()
+				//.body(Payload()).when()
+				.post(SetOperation).then().log().all()
+				.statusCode(201).extract();
+
+		System.out.println("!!!!!!!!!!!!!!" + getChildrenResponse.asString() + "!!!!!!!!!!!!!!!!");
+
+	}
 	
 
 	/*private Map<String, Object> Payload() {

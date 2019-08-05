@@ -25,8 +25,8 @@ static String DeviceID="190859";//Raspberry pi
 	static String ph="";
 	static String uname2="";
 	
-	@Test
-	public void TestMethod() throws InterruptedException {
+	//@Test
+	public void TestMethod4747() throws InterruptedException {
 		
 		 Properties prop = new Properties();
 		    InputStream input = null;
@@ -71,6 +71,9 @@ static String DeviceID="190859";//Raspberry pi
 		element.sendKeys(pass);
 		element= wait.until(ExpectedConditions.elementToBeClickable(By.xpath( "//button[contains(@ng-disabled,'ctrl.disabledForm(form_login)') ]")));
 		element.click();
+		element= wait.until(ExpectedConditions.elementToBeClickable(By.xpath( "//div//a//span[contains(.,'Configuration')]")));
+		element.click();
+		
 		element= wait.until(ExpectedConditions.elementToBeClickable(By.xpath( "//span[contains(.,'Global Smart Rules')]")));
 		element.click();
 		element= wait.until(ExpectedConditions.elementToBeClickable(By.xpath( "//button[@ng-click='add()']")));
