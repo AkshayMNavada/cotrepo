@@ -102,6 +102,7 @@ static String DeviceID="190859";//Raspberry pi
 		element= wait.until(ExpectedConditions.elementToBeClickable(By.xpath( "//button[@ng-click='save()']")));
 		element.click();
 		
+		Thread.sleep(3000);
 		ApiTest obj=new ApiTest();
 		obj.setAlarm();
 	
@@ -126,7 +127,9 @@ static String DeviceID="190859";//Raspberry pi
 		element= wait.until(ExpectedConditions.elementToBeClickable(By.xpath( "//button[@ng-click='save()']")));
 		element.click();
 		
+		Thread.sleep(3000);
 		obj.setAlarm();
+		
 		
 		//Rule3
 		element= wait.until(ExpectedConditions.elementToBeClickable(By.xpath( "//span//button[@ng-click='add()']")));
@@ -147,6 +150,7 @@ static String DeviceID="190859";//Raspberry pi
 		element= wait.until(ExpectedConditions.elementToBeClickable(By.xpath( "//button[@ng-click='save()']")));
 		element.click();	
 		
+		obj.setSeverityAlarm();
 		//Rule4
 				element= wait.until(ExpectedConditions.elementToBeClickable(By.xpath( "//span//button[@ng-click='add()']")));
 				element.click();
@@ -171,7 +175,7 @@ static String DeviceID="190859";//Raspberry pi
 				element= wait.until(ExpectedConditions.elementToBeClickable(By.xpath( "//button[@ng-click='save()']")));
 				element.click();
 				
-				obj.setAlarm();
+				obj.setOperation();
 		//Rule5
 				element= wait.until(ExpectedConditions.elementToBeClickable(By.xpath( "//span//button[@ng-click='add()']")));
 				element.click();

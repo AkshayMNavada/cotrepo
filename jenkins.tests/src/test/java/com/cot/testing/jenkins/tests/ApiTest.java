@@ -1,4 +1,4 @@
-package com.cot.testing.cot.tests;
+package com.cot.testing.jenkins.tests;
 
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.*;
